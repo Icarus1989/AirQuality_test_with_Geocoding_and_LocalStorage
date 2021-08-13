@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<title>Test One</title>
+
+	<script src="libraries/p5.js"></script>
+
+	<style>
+		#insertInput {
+			font-weight: 500;
+			font-size: 16px;
+			border: 3px solid #42A5F5;
+			border-radius: 5px;
+
+		}
+
+		.saveButton {
+			color: #43A047;
+			font-weight: 700;
+			font-size: 18px;
+			background-color: #E8F5E9;
+			border: 3px solid #43A047;
+			border-radius: 5px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+
+		.selectStyle {
+			float: right;
+			max-width: 170px;
+			color: #448AFF;
+			background-color: #E3F2FD;
+			font-weight: 400;
+			font-size: 16px;
+			border: 3px solid #42A5F5;
+			border-radius: 5px;
+		}
+
+		#generalContainer {
+			border: 3px solid #42A5F5;
+			border-radius: 12px;
+		}
+
+		#legend {
+			color: #448AFF;
+
+		}
+
+		.status {
+			border-radius: 12px;
+			padding: 2%;
+			margin: 2%;
+		}
+
+		.greenStatus {
+			border: 3px solid #388E3C;
+			border-radius: 12px;
+			padding: 2%;
+			margin: 2%;
+		}
+
+		.yellowStatus {
+			border: 3px solid #FFEA00;
+			border-radius: 12px;
+			padding: 2%;
+			margin: 2%;
+		}
+
+		.orangeStatus {
+			border: 3px solid #F57F17;
+			border-radius: 12px;
+			padding: 2%;
+			margin: 2%;
+		}
+
+		.redStatus {
+			border: 3px solid #E53935;
+			border-radius: 12px;
+			padding: 2%;
+			margin: 2%;
+		}
+
+		#locationContainer {
+			padding-top: 2px;
+			padding-bottom: 2px;
+			padding-left: 4px;
+			padding-right: 3px;
+			color: #448AFF;
+			background-color: #E3F2FD;
+			border: 3px solid #448AFF;
+			border-radius: 5px;
+
+		}
+
+		.locationTracking {
+			/* content: &#10148; */
+			font-size: 16px;
+			padding-left: 2px;
+			padding-right: 0px;
+			margin: 0;
+			text-align: center;
+			align-items: center;
+			transform: rotate(315deg);
+		}
+
+		@media only screen and (max-width: 400px) {
+			.selectStyle {
+				float: left;
+			}
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Testing</h1>
+	<br>
+	<hr>
+	<fieldset id="generalContainer">
+		<legend id="legend">Welcome</legend>
+
+		<!-- <label for="input">Enter a city: </label> -->
+		<input id="insertInput" placeholder="Enter a city...">
+		<button id="locationContainer">
+			<div class="locationTracking">&#10148;</div>
+		</button>
+		<div id="scheduleContainer">
+
+		</div>
+	</fieldset>
+
+	<script src="Classes.js"></script>
+	<script src="script.js"></script>
+
+</body>
+
+</html>
