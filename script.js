@@ -39,7 +39,7 @@ input.addEventListener('change', async () => {
   container.textContent = '';
   container.classList = null;
 
-  const url = `http://www.mapquestapi.com/geocoding/v1/address?key=${api_key_geocoding}&location=${input.value}`;
+  const url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key_geocoding}&location=${input.value}`;
 
   let retrieveData = new RetrieveData(url, air_api_key);
 
@@ -99,7 +99,7 @@ geolocationBtn.addEventListener('click', () => {
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
 
-    let reverseGeocodingURL = `http://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
+    let reverseGeocodingURL = `https://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
     let response = await fetch(reverseGeocodingURL);
     let json = await response.json();
 

@@ -22,7 +22,7 @@ console.log(localStorage);
 
 
 input.addEventListener('change', async () => {
-	const url = `http://www.mapquestapi.com/geocoding/v1/address?key=${api_key_geocoding}&location=${input.value}`;
+	const url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key_geocoding}&location=${input.value}`;
 
 	// Geocoding -----------------
 	let response = await fetch(url);
