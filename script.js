@@ -96,6 +96,10 @@ geolocationBtn.addEventListener('click', () => {
 
   navigator.geolocation.getCurrentPosition(async (position) => {
 
+    let p = document.createElement('p');
+    p.textContent('Geoloction available');
+    container.append(p);
+
     let lat = position.coords.latitude;
     let lon = position.coords.longitude;
 
