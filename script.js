@@ -90,89 +90,92 @@ selections.addEventListener('change', () => {
 
 });
 
-geolocationBtn.addEventListener('click', () => {
+geolocationBtn.addEventListener('click', (event) => {
   // let geo = navigator.geolocation;
   // console.log(geo);
 
-  navigator.geolocation.getCurrentPosition(async (position) => {
+  if (event.target.id == 'locationContainer' || event.target.tagName == 'button' || event.target.tagName == 'div') {
+    navigator.geolocation.getCurrentPosition(async (position) => {
 
-    let p = document.createElement('p');
-    p.textContent('Geoloction available');
-    container.append(p);
+      let p = document.createElement('p');
+      p.textContent('Geoloction available');
+      container.append(p);
 
-    let lat = position.coords.latitude;
-    let lon = position.coords.longitude;
+      let lat = position.coords.latitude;
+      let lon = position.coords.longitude;
 
-    let reverseGeocodingURL = `https://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
-    let response = await fetch(reverseGeocodingURL);
-    let json = await response.json();
+      let reverseGeocodingURL = `https://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
+      let response = await fetch(reverseGeocodingURL);
+      let json = await response.json();
 
-    let title = `${json.results[0].locations[0].adminArea5}, ${json.results[0].locations[0].street}`;
+      let title = `${json.results[0].locations[0].adminArea5}, ${json.results[0].locations[0].street}`;
 
 
-    // obtainData(lat, lon);
+      // obtainData(lat, lon);
 
-    // console.log(obtainData.json);
+      // console.log(obtainData.json);
 
-    let dataByPos = new retrieveAirDataByPos(lat, lon, air_api_key);
-    await dataByPos.retrieve();
+      let dataByPos = new retrieveAirDataByPos(lat, lon, air_api_key);
+      await dataByPos.retrieve();
 
-    console.log(dataByPos.data);
+      console.log(dataByPos.data);
 
-    let makeDataByPosTab = new MakeTab(dataByPos.data, title, container);
-    makeDataByPosTab.drawTab();
+      let makeDataByPosTab = new MakeTab(dataByPos.data, title, container);
+      makeDataByPosTab.drawTab();
 
-    let button = document.createElement('button');
-    let saveButton = new SaveButton(button, container);
-    console.log(saveButton);
-    saveButton.saveBtnCreation();
+      let button = document.createElement('button');
+      let saveButton = new SaveButton(button, container);
+      console.log(saveButton);
+      saveButton.saveBtnCreation();
 
-    saveButton.button.addEventListener('click', () => {
+      saveButton.button.addEventListener('click', () => {
 
-      let postTitle;
+        let postTitle;
 
-      console.log(title.length)
+        console.log(title.length)
 
-      // ----- check
+        // ----- check
 
-      // if (title.length > 20) {
-      //   postTitle = title.slice(0, 19) + '...';
-      // } else {
-      //   postTitle = title;
-      // }
-      // console.log(Object.keys(localStorage));
+        // if (title.length > 20) {
+        //   postTitle = title.slice(0, 19) + '...';
+        // } else {
+        //   postTitle = title;
+        // }
+        // console.log(Object.keys(localStorage));
 
-      // -----
-      // ----- check
-      postTitle = title;
+        // -----
+        // ----- check
+        postTitle = title;
 
-      if (localStorage[title]) {
-        return;
-      } else if (!(localStorage[title])) {
-        let internalMemory = new InternalMemory(postTitle, sendingData, dataByPos.data, selections);
-        internalMemory.saveData();
-      }
+        if (localStorage[title]) {
+          return;
+        } else if (!(localStorage[title])) {
+          let internalMemory = new InternalMemory(postTitle, sendingData, dataByPos.data, selections);
+          internalMemory.saveData();
+        }
+
+      });
 
     });
 
-  });
+    // console.log(lat);
 
-  // console.log(lat);
+    // async function obtainData(lat, lon) {
+    //   let reverseGeocodingURL = `http://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
+    //   let response = await fetch(reverseGeocodingURL);
+    //   let json = await response.json();
+    //   return json;
 
-  // async function obtainData(lat, lon) {
-  //   let reverseGeocodingURL = `http://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
-  //   let response = await fetch(reverseGeocodingURL);
-  //   let json = await response.json();
-  //   return json;
-
-  //   // console.log(`${json.results[0].locations[0].adminArea5}, ${json.results[0].locations[0].street}`);
-  // }
+    //   // console.log(`${json.results[0].locations[0].adminArea5}, ${json.results[0].locations[0].street}`);
+    // }
 
 
 
 
 
-  // console.log(geo.toString());
+    // console.log(geo.toString()); 
+  }
+
 });
 
 
