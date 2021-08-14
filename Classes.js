@@ -34,6 +34,17 @@ class RetrieveData {
 }
 
 class MakeTab {
+
+  setup = function () {
+    // extraCanvas = createGraphics(400,400);
+    createCanvas(400, 400);
+    background(200);
+  }
+
+  draw = function () {
+    fill(50, 50, 50);
+    ellipse(200, 200, 20, 20);
+  }
   constructor(data, value, containerElt) {
     this.data = data;
     // this.lat = latitude;
@@ -47,6 +58,7 @@ class MakeTab {
   }
 
   drawTab() {
+
 
     console.log(Object.values(this.data));
     console.log(Object.entries(this.data));
@@ -87,6 +99,12 @@ class MakeTab {
     }
 
   }
+
+  // setup() {
+
+  // }
+  // draw() {
+  // }
 
 }
 

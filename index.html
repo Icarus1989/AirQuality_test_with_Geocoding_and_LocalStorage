@@ -11,6 +11,16 @@
 	<script src="libraries/p5.js"></script>
 
 	<style>
+		canvas {
+			/* position: relative;
+			top: 0; */
+			/* position: fixed; */
+			border: 3px solid #42A5F5;
+			margin-top: 5%;
+			margin-left: 30%;
+			margin-right: 30%;
+		}
+
 		#insertInput {
 			font-weight: 500;
 			font-size: 16px;
@@ -31,7 +41,10 @@
 		}
 
 		.selectStyle {
-			float: right;
+			/* float: right; */
+			position: absolute;
+			top: 18.5%;
+			right: 4%;
 			max-width: 170px;
 			color: #448AFF;
 			background-color: #E3F2FD;
@@ -110,6 +123,7 @@
 
 		@media only screen and (max-width: 400px) {
 			.selectStyle {
+				position: static;
 				float: left;
 			}
 		}
@@ -128,10 +142,14 @@
 		<button id="locationContainer">
 			<div class="locationTracking">&#10148;</div>
 		</button>
+		<select id="selectElement"></select>
 		<div id="scheduleContainer">
 
 		</div>
+		<div id="canvasContainer"></div>
+
 	</fieldset>
+
 
 	<script src="Classes.js"></script>
 	<script src="script.js"></script>

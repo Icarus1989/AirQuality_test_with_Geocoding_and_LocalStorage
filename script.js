@@ -9,14 +9,35 @@ let generalContainer = document.querySelector('#generalContainer');
 
 let container = document.querySelector('#scheduleContainer');
 
-let selections = document.createElement('select');
+let canvasContainer = document.querySelector('#canvasContainer');
+
+let selections = document.querySelector('#selectElement');
 // selections.setAttribute('id', 'selections');
 selections.classList.add('selectStyle');
 // selections.style.float = 'right';
-generalContainer.append(selections, container);
+generalContainer.append(container, selections);
 
 let geolocationBtn = document.querySelector('#locationContainer');
 console.log(geolocationBtn);
+
+// ----- Testing createCanvas from fly
+
+
+// let newCanvasElement = {};
+
+// newCanvasElement.setup = function () {
+//   createCanvas(400, 400);
+//   background(200);
+// }
+// newCanvasElement.draw = function () {
+//   fill(40);
+//   ellipse(200, 200, 20, 20);
+// }
+
+
+// let setup = new Function('this.createCanvas(400, 400); this.background(40);');
+// let draw = new Function('fill(20); ellipse(200, 200, 20, 20);');
+// ----- Testing createCanvas from fly
 
 
 
@@ -37,6 +58,7 @@ designOpt.loadData();
 input.addEventListener('change', async () => {
 
   container.textContent = '';
+  canvasContainer.style.display = 'none';
   container.classList = null;
 
   const url = `https://www.mapquestapi.com/geocoding/v1/address?key=${api_key_geocoding}&location=${input.value}`;
@@ -54,6 +76,45 @@ input.addEventListener('change', async () => {
   console.log(retrieveData.data);
   let tab = new MakeTab(retrieveData.data, input.value, container);
   tab.drawTab();
+  canvasContainer.style.display = 'block';
+  // let showCanvas = createCanvas(400, 400);
+
+  // showCanvas.parent(tab);
+
+
+  // ---- Testing appear Canvas
+  // window.setup();
+  // window.draw();
+
+
+  // (function setup() {
+  //   createCanvas(400, 400);
+  //   background(200);
+
+
+  // })();
+
+  // (function draw() {
+  //   fill(40);
+  //   ellipse(200, 200, 40, 40);
+
+
+  // })();
+
+
+  // newCanvasElement.setup();
+  // newCanvasElement.draw();
+
+  // setup();
+  // draw();
+  // window.setup();
+  // window.draw();
+  // tab.setup();
+  // tab.draw();
+
+  showCanvas = true;
+
+  // ---- Testing appear Canvas
 
 
   let button = document.createElement('button');
@@ -78,9 +139,6 @@ input.addEventListener('change', async () => {
 selections.addEventListener('change', () => {
   console.log('Change element');
   console.log(selections.value);
-  // console.log(localStorage[selections.value]);
-  // console.log(JSON.parse(localStorage[selections.value]));
-  // console.log(Object.fromEntries(localStorage[selections.value]));
   container.textContent = '';
 
 
@@ -97,9 +155,9 @@ document.addEventListener('click', (event) => {
   if (event.target.closest('#locationContainer')) {
     navigator.geolocation.getCurrentPosition(async (position) => {
 
-      let p = document.createElement('p');
-      p.textContent = 'Geoloction available';
-      container.append(p);
+      // let p = document.createElement('p');
+      // p.textContent = 'Geoloction available';
+      // container.append(p);
 
       let lat = position.coords.latitude;
       let lon = position.coords.longitude;
@@ -134,17 +192,6 @@ document.addEventListener('click', (event) => {
 
         console.log(title.length)
 
-        // ----- check
-
-        // if (title.length > 20) {
-        //   postTitle = title.slice(0, 19) + '...';
-        // } else {
-        //   postTitle = title;
-        // }
-        // console.log(Object.keys(localStorage));
-
-        // -----
-        // ----- check
         postTitle = title;
 
         if (localStorage[title]) {
@@ -159,24 +206,42 @@ document.addEventListener('click', (event) => {
     });
   }
 
-
-  // console.log(lat);
-
-  // async function obtainData(lat, lon) {
-  //   let reverseGeocodingURL = `http://open.mapquestapi.com/geocoding/v1/reverse?key=${api_key_geocoding}&location=${lat},${lon}`;
-  //   let response = await fetch(reverseGeocodingURL);
-  //   let json = await response.json();
-  //   return json;
-
-  //   // console.log(`${json.results[0].locations[0].adminArea5}, ${json.results[0].locations[0].street}`);
-  // }
-
-
-
-
-
-  // console.log(geo.toString());
 });
 
 
 // localStorage.clear();
+
+// Aggiungere Protected field per emcapsulation?
+// class CoffeeMachineFour {
+//   _waterAmount = 0;
+
+//   setWaterAmount(value) {
+//     if (value < 0) {
+//       value = 0;
+//     }
+//     this._waterAmount = value;
+//   }
+
+//   getWaterAmount() {
+//     return this._waterAmount;
+//   }
+// }
+// new CoffeeMachineFour().setWaterAmount(100);
+
+function setup() {
+  // noCanvas();
+
+  let showCanvas = createCanvas(200, 200);
+  showCanvas.parent(canvasContainer);
+  // if (showCanvas) {
+  background(200);
+  // }
+
+}
+
+function draw() {
+  // image(extraCanvas, 0, 0);
+  fill(50);
+  ellipse(200, 200, 20, 20);
+
+}
