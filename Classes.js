@@ -268,3 +268,15 @@ class retrieveAirDataByPos {
     this.data = await this.airJson.data.iaqi;
   }
 }
+
+// try {
+
+// } catch (err) {
+
+// } finally {
+
+// }
+
+// let url = new URL(url);
+
+// modify for adding params from chapter URL object

@@ -57,6 +57,10 @@ designOpt.loadData();
 
 input.addEventListener('change', async () => {
 
+  // ---> togliere focus una volta inserita la località <---
+
+  // test event input invece che change per riconoscimento vocale
+
   container.textContent = '';
   canvasContainer.style.display = 'none';
   container.classList = null;
@@ -125,6 +129,8 @@ input.addEventListener('change', async () => {
   saveButton.button.addEventListener('click', () => {
     // console.log(Object.keys(localStorage));
     if (localStorage[retrieveData.cityName]) {
+      // Aggiungere rimozione campo esistente / aggiunta nuovo 
+      // senza ripetere campo
       return;
     } else if (!(localStorage[retrieveData.cityName])) {
       let internalMemory = new InternalMemory(retrieveData.cityName, sendingData, retrieveData.data, selections);
@@ -196,6 +202,8 @@ document.addEventListener('click', (event) => {
 
         if (localStorage[title]) {
           return;
+          // aggiungere cancellazione vecchio campo e salvataggio
+          // nuovo con lo stesso name
         } else if (!(localStorage[title])) {
           let internalMemory = new InternalMemory(postTitle, sendingData, dataByPos.data, selections);
           internalMemory.saveData();
@@ -245,3 +253,37 @@ function draw() {
   ellipse(200, 200, 20, 20);
 
 }
+
+// Per eventuale problema CORS provare option {mode: "cors" o credentials: "include"}
+
+// let promise = fetch(url, {
+// 	method: "GET", //POST, PUT, DELETE, HEAD, ecc
+// 	headers: {
+// 		// la value dell'header content type é di solito auto-impostata
+// 		// in base al body della request
+// 		"Content-Type": "text/plain; charset)UTF-8"
+// 	},
+// 	body: undefined, //string, FormData, Blob, BufferSource, o...
+// 	// URLSearchParams
+// 	referrer: "about:client", //o "" per non inviare un Referer header
+// 	// o un url dall'origin corrente
+// 	referrerPolicy: "no-referrer-when-downgrade", //no-referrer, ...
+// 	// ...origin, same-origin...
+// 	mode: "cors", //same-origin, no-cors
+// 	credentials: "same-origin", //omit, include
+// 	cache: "default", //no-store, reload, no-cache, force-cache,...
+// 	// o only-if-cached
+// 	redirect: "follow", //manual, error
+// 	integrity: "", // un hash, come "sha256-abcdef1234567890"
+// 	keepalive: false, //true
+// 	signal: undefined, //AbortController per cancellare la request - vedi capitolo
+// 	window: window //null
+// });
+
+
+// Inserire attribute tabindex nell'HTML dei tre elements selezionabili.
+
+// Rivalutare event input nel campo di ricerca, o con un timeout dopo che si é inerito
+// qualcosa che dopo 2 - 3 secondi avvi la richiesta in automatico.
+
+// Valutare event input nella selezione delle option salvate.
